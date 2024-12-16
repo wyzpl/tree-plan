@@ -4,7 +4,7 @@
         <div class="label-list">
             <div v-for="(item, index) in annotationList" @mouseenter="appStore.setHoverAnnotationId(item.id)"
                 @mouseleave="appStore.setHoverAnnotationId(null)" :key="item.id">
-                <el-color-picker v-model="item.stroke" color-format="rgb" @change.stop="handleChangeLabelColor(item)" />
+                <div style="width:20px;height:20px;" :style="{ 'backgroundColor': item.stroke }"></div>
                 <el-dropdown @command="handleChangeName" trigger="click" style="border-bottom: 1px solid red;">
                     <span class="el-dropdown-link">
                         <span>{{ item.name }} </span>
@@ -55,8 +55,9 @@ const handleChangeLabelColor = (item: any) => {
 .label-view 
     width: 280px
     min-width: 280px
-    border: 1px solid #535bf2
     padding: 10px 
+    background-color: #fff
+    border-left: 1px solid rgba(0, 0, 0, 0.1)
 
     .label-title
         font-weight: bold

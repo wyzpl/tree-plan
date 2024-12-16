@@ -15,13 +15,20 @@ const toolsStore = useToolsStore()
 
 <style lang="sass" scoped>
 .tools 
-    width: 99.9%
+    position: absolute
+    top:20px
+    width: 90%
+    left: 50%
+    transform: translateX(-50%)
     height: 28px
-    border: 1px solid #535bf2
     display: flex
     align-items: center
     gap:10px
-    padding: 0 10px
+    padding: 10px 20px
+    background-color: #fff
+    border-radius: 4px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    z-index: 999
 
 .el-button.is-circle
     width: 26px
