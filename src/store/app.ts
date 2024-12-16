@@ -48,6 +48,13 @@ export const useAppStore = defineStore("app", () => {
     }
   };
 
+  /* 允许编辑 */
+  const allowEdit = (type: string) => {
+    console.log("🏸 ~ type:", type);
+    app.value.editor.visible = true;
+    app.value.tree.hitChildren = true;
+  };
+
   return {
     app,
     setApp,
@@ -56,5 +63,6 @@ export const useAppStore = defineStore("app", () => {
     removeAnnotation,
     setHoverAnnotationId,
     fitScreen,
+    allowEdit,
   };
 });

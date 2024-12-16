@@ -14,14 +14,14 @@ export const useToolsStore = defineStore("tools", () => {
       tag: "circle",
       icon: "/src/assets/icon/circle.svg",
     },
+  ];
+  /* 操作列表 */
+  const drawOperation = [
     {
       name: "选择工具",
       tag: "edit",
       icon: "/src/assets/icon/select.svg",
     },
-  ];
-  /* 操作列表 */
-  const drawOperation = [
     {
       name: "撤销",
       tag: "revoked",

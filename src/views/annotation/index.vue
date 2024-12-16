@@ -1,9 +1,11 @@
 <template>
     <div class="label-view">
         <div class="label-title">标注记录</div>
-        <div class="label-list">
+        <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', paddingRight: '10px' }"
+            height="90vh">
+
             <div v-for="(item, index) in annotationList" @mouseenter="appStore.setHoverAnnotationId(item.id)"
-                @mouseleave="appStore.setHoverAnnotationId(null)" :key="item.id">
+                @mouseleave="appStore.setHoverAnnotationId(null)" :key="item.id" class="label-item">
                 <div style="width:20px;height:20px;" :style="{ 'backgroundColor': item.stroke }"></div>
                 <el-dropdown @command="handleChangeName" trigger="click" style="border-bottom: 1px solid red;">
                     <span class="el-dropdown-link">
@@ -26,7 +28,8 @@
                     <img src="@/assets/icon/delete.svg" width="16" height="16" alt="" srcset="">
                 </span>
             </div>
-        </div>
+        </el-scrollbar>
+
     </div>
 </template>
 
@@ -49,20 +52,32 @@ const handleChangeName = (command: any) => {
     command.item.fill = rgbToRgba(command.command.color)
 }
 
-/* 切换颜色 */
-const handleChangeLabelColor = (item: any) => {
-    item.fill = rgbToRgba(item.stroke)
-    labelStore.setLabelColor(item.name, item.stroke)
-}
 </script>
 
 <style scoped lang="sass">
 .label-view 
     width: 280px
     min-width: 280px
-    padding: 10px 
     background-color: #fff
     border-left: 1px solid rgba(0, 0, 0, 0.1)
+
+    .label-item
+        flex: 1
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding: 10px
+        border-radius: 4px
+        cursor: pointer
+        transition: all 0.3s ease-in-out
+        &:hover
+            background-color: #f5f5f5
+
+        .label-color
+            width: 20px
+            height: 20px
+            border-radius: 50%
+            cursor: pointer
 
     .label-title
         font-weight: bold
