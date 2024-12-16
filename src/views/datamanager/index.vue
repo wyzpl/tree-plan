@@ -1,7 +1,7 @@
 <template>
     <div class="data-manager">
         <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', paddingRight: '10px' }"
-            height="95vh">
+            height="93vh">
             <p v-for="item in 200" :key="item" class="data-item">{{ item }}</p>
         </el-scrollbar>
     </div>

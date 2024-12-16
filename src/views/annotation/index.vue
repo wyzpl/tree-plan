@@ -18,8 +18,13 @@
                     </template>
                 </el-dropdown>
                 <span style="margin-left:20px">{{ item.tag }}</span>
-                <span style="margin-left:20px">切换显示</span>
-                <span style="margin-left:20px" @click="appStore.removeAnnotation(item.id)">删除 </span>
+                <span style="margin-left:20px">
+                    <img src="@/assets/icon/visible.svg" width="16" height="16" alt="" srcset="">
+                    <!-- <img src="@/assets/icon/invisible.svg" width="16" height="16" alt="" srcset=""> -->
+                </span>
+                <span style="margin-left:20px" @click="appStore.removeAnnotation(item.id)">
+                    <img src="@/assets/icon/delete.svg" width="16" height="16" alt="" srcset="">
+                </span>
             </div>
         </div>
     </div>

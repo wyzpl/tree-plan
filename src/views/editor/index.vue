@@ -33,8 +33,6 @@ onMounted(() => {
     appStore.setApp(app)
     // 创建点阵实例
     const dotMatrix = new DotMatrix(app)
-    // 启用点阵显示
-    dotMatrix.enableDotMatrix(true)
 
     const image = new Image({
         url: 'https://images.unsplash.com/photo-1653839245998-c0589e00e68d?ixid=M3w4ODczOHwwfDF8cmFuZG9tfHx8fHx8fHx8MTczMzg5NzM3MHw&ixlib=rb-4.0.3&w=1920&h=1080&dpr=1&auto=format&q=75&fit=crop',
@@ -45,7 +43,8 @@ onMounted(() => {
     })
     app.tree.add(image)
 
-
+    // 启用点阵显示
+    dotMatrix.enableDotMatrix(true)
 
     // setTimeout(() => {
 

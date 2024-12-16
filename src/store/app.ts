@@ -33,6 +33,21 @@ export const useAppStore = defineStore("app", () => {
     annotationList.value.splice(index, 1);
   };
 
+  /* 适应屏幕 */
+  const fitScreen = (type: string) => {
+    switch (type) {
+      case "fit":
+        app.value.tree.zoom("fit", 10);
+        break;
+      case "in":
+        app.value.tree.zoom("in");
+        break;
+      case "out":
+        app.value.tree.zoom("out");
+        break;
+    }
+  };
+
   return {
     app,
     setApp,
@@ -40,5 +55,6 @@ export const useAppStore = defineStore("app", () => {
     updateAnnotationList,
     removeAnnotation,
     setHoverAnnotationId,
+    fitScreen,
   };
 });

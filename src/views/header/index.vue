@@ -1,9 +1,21 @@
 <template>
     <header class="top-header">
-        <div id="logo">{{ typed }}</div>
+        <div id="logo"></div>
         <el-dropdown @command="handleCommand">
-            <span class="el-dropdown-link">
+            <span class="dropdown-link">
                 文件管理
+            </span>
+            <template #dropdown>
+                <el-dropdown-menu :show-arrow="false">
+                    <el-dropdown-item command="label">Edit Label</el-dropdown-item>
+                    <el-dropdown-item command="upload">Action 2</el-dropdown-item>
+                </el-dropdown-menu>
+            </template>
+        </el-dropdown>
+
+        <el-dropdown @command="handleCommand">
+            <span class="dropdown-link">
+                视图管理
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
@@ -50,4 +62,16 @@ const handleCommand = (command: string) => {
     padding:  10px
     gap: 30px
     cursor: pointer
+
+    #logo
+        width: 160px
+    
+.el-tooltip__trigger:focus-visible 
+    outline: unset
+
+.dropdown-link
+    color: #333
+    font-size: 14px
+    font-weight: bold
+
 </style>
