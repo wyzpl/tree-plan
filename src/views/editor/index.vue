@@ -2,7 +2,7 @@
     <div class="editor-view">
         <ToolsView />
         <div id="container" ref="rectRef"></div>
-        <Footer />
+        <FooterView />
     </div>
 </template>
 
@@ -15,7 +15,7 @@ import { nanoid } from 'nanoid'
 
 
 import ToolsView from './tools/index.vue'
-import Footer from './tools/footer.vue'
+import FooterView from './tools/footer.vue'
 
 const appStore = useAppStore()
 const toolsStore = useToolsStore()

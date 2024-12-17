@@ -1,5 +1,5 @@
 <template>
-    <el-tooltip content="暂无实现">
+    <el-tooltip content="暂未实现">
         <div class="footer">
             <el-icon>
                 <ArrowLeft />
