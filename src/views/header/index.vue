@@ -48,7 +48,7 @@
 import { Upload, DocumentAdd, Download } from '@element-plus/icons-vue'
 import Typed from 'typed.js';
 
-const logo = ref('')
+const logo = ref()
 
 onMounted(() => {
     logo.value = new Typed('#logo', {
