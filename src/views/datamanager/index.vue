@@ -1,15 +1,21 @@
 <template>
     <div class="data-manager">
-        <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '10px' }" height="95vh">
-            <div class="data-item" :class="item == 10 ? 'active' : ''" v-for="item in 200">
-                <img :src="Img" alt="">
+        <el-empty description="暂无数据" v-if="!data.length" />
+        <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '10px' }" height="95vh"
+            v-else>
+            <div class="data-item" :class="item.url === dataStore.currentUrl ? 'active' : ''" v-for="item in data"
+                @click="dataStore.setCurrentUrl(item.url)">
+                <img :src="item.url" alt="">
             </div>
         </el-scrollbar>
     </div>
 </template>
 
 <script setup lang="ts">
-import Img from '@/assets/1 (308).jpg'
+const dataStore = useDataStore()
+
+const { data } = storeToRefs(dataStore)
+
 </script>
 
 <style lang="sass" scoped>

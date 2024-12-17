@@ -21,6 +21,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
+  const hexToRgb: typeof import('./src/utils/index')['hexToRgb']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
@@ -72,6 +73,7 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDataStore: typeof import('./src/store/data')['useDataStore']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useId: typeof import('vue')['useId']
   const useLabelStore: typeof import('./src/store/label')['useLabelStore']
@@ -115,6 +117,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly hexToRgb: UnwrapRef<typeof import('./src/utils/index')['hexToRgb']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
@@ -164,6 +167,7 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDataStore: UnwrapRef<typeof import('./src/store/data')['useDataStore']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLabelStore: UnwrapRef<typeof import('./src/store/label')['useLabelStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>

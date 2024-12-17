@@ -28,7 +28,7 @@ export const useAppStore = defineStore("app", () => {
       annotationList.value.forEach((item: any) => {
         app.value.tree.findId(item.id).remove();
       });
-      annotationList.value = [];
+      resetAnnotationList();
     } else {
       /* 移除当前标注 */
       app.value.tree.findId(id).remove();
@@ -39,6 +39,11 @@ export const useAppStore = defineStore("app", () => {
 
     /* 清空画布选择目标 */
     app.value.editor.target = null;
+  };
+
+  /* 重置标注列表 */
+  const resetAnnotationList = () => {
+    annotationList.value = [];
   };
 
   /* 适应屏幕 */
@@ -72,5 +77,6 @@ export const useAppStore = defineStore("app", () => {
     setHoverAnnotationId,
     fitScreen,
     allowEdit,
+    resetAnnotationList,
   };
 });

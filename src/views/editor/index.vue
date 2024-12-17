@@ -1,5 +1,6 @@
 <template>
-    <div class="editor-view">
+    <el-empty description="暂无数据" v-if="!currentUrl" />
+    <div class="editor-view" v-else>
         <ToolsView />
         <div id="container" ref="rectRef"></div>
         <FooterView />
@@ -19,10 +20,18 @@ import FooterView from './tools/footer.vue'
 
 const appStore = useAppStore()
 const toolsStore = useToolsStore()
+const dataStore = useDataStore()
+
+/* 编辑器实例 */
+const app = ref(null)
+
+/* 当前图片地址 */
+const { currentUrl } = storeToRefs(dataStore)
 
 /* 图片大小，填充 Frame */
 const w = ref(0)
 const h = ref(0)
+
 
 /* 绘制 */
 const isDraw = ref(false)
@@ -40,17 +49,24 @@ const loadImage = (url: string): Promise<{ width: number, height: number }> => {
         image.src = url;
     });
 }
+watchEffect(async () => {
+    if (!currentUrl.value) return
 
-
-
-onMounted(async () => {
-
-    let res = await loadImage('https://img2.baidu.com/it/u=2101541482,3418856015&fm=253&fmt=auto&app=138&f=JPEG?w=1269&h=800')
+    let res = await loadImage(currentUrl.value)
 
     w.value = res.width
     h.value = res.height
 
-    const app = new App({
+    initEditor()
+})
+
+const initEditor = () => {
+    if (app.value) {
+        app.value.destroy()
+        appStore.resetAnnotationList()
+    }
+
+    app.value = new App({
         view: 'container',
         editor: { type: 'draw' },
         wheel: { zoomSpeed: 0.2 },
@@ -63,28 +79,27 @@ onMounted(async () => {
         },
     })
 
-
-    appStore.setApp(app)
+    appStore.setApp(app.value)
     // 创建点阵实例
-    const dotMatrix = new DotMatrix(app)
+    const dotMatrix = new DotMatrix(app.value)
 
     let frame = new Frame({
         width: w.value,
         height: h.value,
         fill: {
             type: 'image',
-            url: 'https://img2.baidu.com/it/u=2101541482,3418856015&fm=253&fmt=auto&app=138&f=JPEG?w=1269&h=800',
+            url: dataStore.currentUrl,
         },
         overflow: 'hide',
     })
 
-    app.tree.add(frame)
-    app.tree.zoom('fit', 10)
+    app.value.tree.add(frame)
+    app.value.tree.zoom('fit', 10)
     // 启用点阵显示
     dotMatrix.enableDotMatrix(true)
 
 
-    app.on(PointerEvent.DOWN, (e) => {
+    app.value.on(PointerEvent.DOWN, (e) => {
         /* 鼠标点击图片外进制绘制 */
         const { x, y } = e.getPagePoint()
         if (x < 0 || y < 0 || x > w.value || y > h.value) return
@@ -95,11 +110,11 @@ onMounted(async () => {
     // 创建图形（拖拽）
     let shape: Rect | Ellipse | undefined
 
-    app.on(DragEvent.START, () => {
+    app.value.on(DragEvent.START, () => {
         if (!toolsStore.shape || !isDraw.value) return
 
-        app.editor.visible = false
-        app.tree.hitChildren = false
+        app.value.editor.visible = false
+        app.value.tree.hitChildren = false
 
         if (toolsStore.shape === 'rect') {
             shape = new Rect({ id: nanoid(), name: '选择标签', dragBounds: 'parent', editable: true, fill: 'rgb(50,205,121,.2)', stroke: 'rgb(50,205,121,.4)' })
@@ -107,13 +122,13 @@ onMounted(async () => {
             shape = new Ellipse({ id: nanoid(), name: '选择标签', dragBounds: 'parent', editable: true, fill: 'rgb(50,205,121,.2)', stroke: 'rgb(50,205,121,.4)' })
         } else {
             shape = undefined
-            app.editor.visible = true
-            app.tree.hitChildren = true
+            app.value.editor.visible = true
+            app.value.tree.hitChildren = true
         }
 
     })
 
-    app.on(DragEvent.DRAG, (e: DragEvent) => {
+    app.value.on(DragEvent.DRAG, (e: DragEvent) => {
         if (!isDraw.value || shape == undefined) return
 
         /* 设置大小 添加图形 */
@@ -121,7 +136,7 @@ onMounted(async () => {
         frame.add(shape)
     })
 
-    app.on(PointerEvent.UP, (e) => {
+    app.value.on(PointerEvent.UP, (e) => {
 
         if (!toolsStore.shape || !isDraw.value) return
 
@@ -130,7 +145,7 @@ onMounted(async () => {
         shape = undefined
         isDraw.value = false
     })
-})
+}
 
 </script>
 

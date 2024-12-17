@@ -42,6 +42,7 @@
     </header>
 
     <EditLabel ref="editLabelRef" />
+    <UploadImg ref="uploadImgRef" />
 </template>
 
 <script setup lang="ts">
@@ -59,11 +60,19 @@ onMounted(() => {
 })
 
 const editLabelRef = ref(null)
+const uploadImgRef = ref(null)
 
 
 const handleCommand = (command: string) => {
-    if (command === 'label') {
-        editLabelRef.value.open()
+    switch (command) {
+        case 'image':
+            uploadImgRef.value.open()
+            break;
+        case 'label':
+            editLabelRef.value.open()
+            break;
+        default:
+            break;
     }
 }
 </script>
