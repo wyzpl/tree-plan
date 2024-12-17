@@ -94,4 +94,8 @@ const handleCommand = (command: string) => {
 .el-popper[data-popper-placement^=bottom]>.el-popper__arrow {
     display: none !important;
 }
+
+.el-dropdown__popper .el-dropdown-menu {
+    min-width: 150px;
+}
 </style>

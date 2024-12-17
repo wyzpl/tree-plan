@@ -2,6 +2,7 @@
     <div class="editor-view">
         <ToolsView />
         <div id="container" ref="rectRef"></div>
+        <Footer />
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import { nanoid } from 'nanoid'
 
 
 import ToolsView from './tools/index.vue'
+import Footer from './tools/footer.vue'
 
 const appStore = useAppStore()
 const toolsStore = useToolsStore()
@@ -137,10 +139,11 @@ onMounted(async () => {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 #container {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 150px);
 }
 </style>
