@@ -22,16 +22,16 @@ export const useToolsStore = defineStore("tools", () => {
       tag: "edit",
       icon: "/src/assets/icon/select.svg",
     },
-    {
-      name: "撤销",
-      tag: "revoked",
-      icon: "/src/assets/icon/revoked.svg",
-    },
-    {
-      name: "恢复",
-      tag: "reset",
-      icon: "/src/assets/icon/reset.svg",
-    },
+    // {
+    //   name: "撤销",
+    //   tag: "revoked",
+    //   icon: "/src/assets/icon/revoked.svg",
+    // },
+    // {
+    //   name: "恢复",
+    //   tag: "reset",
+    //   icon: "/src/assets/icon/reset.svg",
+    // },
     {
       name: "清空标注",
       tag: "clear",

@@ -8,10 +8,7 @@ export const useLabelStore = defineStore("label", () => {
     id: string | number;
   }
   /* 标签列表 */
-  const labelList = ref<Label[]>([
-    { id: "1", name: "牛马", color: "rgb(255, 0, 0)" },
-    { id: "2", name: "鸽子", color: "rgb(0, 255, 0)" },
-  ]);
+  const labelList = ref<Label[]>([]);
 
   /* 添加标签 */
   const addLabel = (label: Label) => {

@@ -77,6 +77,7 @@ declare global {
   const useLabelStore: typeof import('./src/store/label')['useLabelStore']
   const useLink: typeof import('vue-router')['useLink']
   const useModel: typeof import('vue')['useModel']
+  const useOptionsStore: typeof import('./src/store/options')['useOptionsStore']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
@@ -166,6 +167,7 @@ declare module 'vue' {
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLabelStore: UnwrapRef<typeof import('./src/store/label')['useLabelStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
+    readonly useOptionsStore: UnwrapRef<typeof import('./src/store/options')['useOptionsStore']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useToolsStore: UnwrapRef<typeof import('./src/store/tools')['useToolsStore']>

@@ -22,6 +22,7 @@ import Datamanager from './datamanager/index.vue'
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .container-view {

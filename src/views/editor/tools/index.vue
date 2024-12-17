@@ -43,8 +43,12 @@ const toolsStore = useToolsStore()
 const appStore = useAppStore()
 
 const handleClickDrawOperation = (operation: string) => {
-    appStore.allowEdit(operation)
-    toolsStore.setShape(null)
+    if (operation === 'clear') {
+        appStore.removeAnnotation(operation)
+    } else {
+        appStore.allowEdit(operation)
+        toolsStore.setShape(null)
+    }
 }
 const handleClickViewOperation = (operation: string) => {
     appStore.fitScreen(operation)

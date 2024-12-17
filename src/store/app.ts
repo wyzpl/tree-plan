@@ -22,15 +22,23 @@ export const useAppStore = defineStore("app", () => {
     app.value.editor.target = app.value.tree.findId(id);
   };
 
-  /* 删除标注 */
+  /* 删除(清空)标注 */
   const removeAnnotation = (id: string) => {
-    /* 移除当前标注 */
-    app.value.tree.findId(id).remove();
+    if (id === "clear") {
+      annotationList.value.forEach((item: any) => {
+        app.value.tree.findId(item.id).remove();
+      });
+      annotationList.value = [];
+    } else {
+      /* 移除当前标注 */
+      app.value.tree.findId(id).remove();
+      /* 从标注列表移除 */
+      const index = annotationList.value.findIndex((item: any) => item.id === id);
+      annotationList.value.splice(index, 1);
+    }
+
     /* 清空画布选择目标 */
     app.value.editor.target = null;
-    /* 从标注列表移除 */
-    const index = annotationList.value.findIndex((item: any) => item.id === id);
-    annotationList.value.splice(index, 1);
   };
 
   /* 适应屏幕 */

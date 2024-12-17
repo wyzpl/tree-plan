@@ -120,11 +120,13 @@ onMounted(async () => {
     })
 
     app.on(PointerEvent.UP, (e) => {
+
         if (!toolsStore.shape || !isDraw.value) return
 
         /* 添加标注 */
         if (shape && shape != undefined) appStore.updateAnnotationList(shape)
         shape = undefined
+        isDraw.value = false
     })
 })
 
