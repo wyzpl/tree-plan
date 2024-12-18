@@ -1,6 +1,5 @@
 <template>
-    <el-empty class="label-view" description=" 暂无数据" v-if="!annotationList.length" />
-    <div class="label-view" v-else>
+    <div class="label-view">
         <div class="label-title">标注记录</div>
         <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', paddingRight: '10px' }"
             height="95vh">

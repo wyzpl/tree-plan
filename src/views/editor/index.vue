@@ -1,6 +1,5 @@
 <template>
-    <el-empty description="暂无数据" v-if="!currentUrl" />
-    <div class="editor-view" v-else>
+    <div class="editor-view">
         <ToolsView />
         <div id="container" ref="rectRef"></div>
         <FooterView />

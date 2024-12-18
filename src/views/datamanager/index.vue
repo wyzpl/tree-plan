@@ -1,8 +1,6 @@
 <template>
     <div class="data-manager">
-        <el-empty description="暂无数据" v-if="!data.length" />
-        <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '10px' }" height="95vh"
-            v-else>
+        <el-scrollbar :view-style="{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '10px' }" height="95vh">
             <div class="data-item" :class="item.url === dataStore.currentUrl ? 'active' : ''" v-for="item in data"
                 @click="dataStore.setCurrentUrl(item.url)">
                 <img :src="item.url" alt="">
