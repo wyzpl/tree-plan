@@ -1,10 +1,13 @@
 <template>
     <el-dialog v-model="dialogVisible" title="导入图片" :show-close="false" :close-on-click-modal="false"
         :close-on-press-escape="false" :align-center="true" center width="500">
+
         <el-upload class="upload-content" drag action="" multiple :show-file-list="false" :auto-upload="false"
             :on-change="handleChangeFile">
             <el-icon class="el-icon--upload"><upload-filled /></el-icon>
-            <div class="el-upload__text">
+
+            <div v-if="fileList.length > 0">已选择{{ fileList.length }}张图片</div>
+            <div class="el-upload__text" v-else>
                 将文件拖放到此处或 <em>点击上传</em>
             </div>
             <!-- <template #tip>
@@ -13,6 +16,7 @@
                 </div>
             </template> -->
         </el-upload>
+
 
         <template #footer>
             <div class="dialog-footer">
@@ -49,8 +53,8 @@ const open = () => {
     dialogVisible.value = true
 }
 const close = () => {
-    dialogVisible.value = false
     fileList.value = []
+    dialogVisible.value = false
 }
 
 /* 关闭 */
