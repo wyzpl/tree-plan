@@ -16,19 +16,19 @@
                         <el-icon style="margin-right: 10px">
                             <Upload />
                         </el-icon>导入图片</el-dropdown-item>
-                    <el-dropdown-item command="annotation">
+                    <!-- <el-dropdown-item command="annotation">
                         <el-icon style="margin-right: 10px">
                             <Upload />
                         </el-icon>导入标注</el-dropdown-item>
                     <el-dropdown-item command="export">
                         <el-icon style="margin-right: 10px">
                             <Download />
-                        </el-icon>导出标注</el-dropdown-item>
+                        </el-icon>导出标注</el-dropdown-item> -->
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
 
-        <el-dropdown placement="bottom-start" @command="handleCommand">
+        <!-- <el-dropdown placement="bottom-start" @command="handleCommand">
             <span class="dropdown-link">
                 设置
             </span>
@@ -38,7 +38,7 @@
                     <el-dropdown-item command="upload">切换皮肤</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
-        </el-dropdown>
+        </el-dropdown> -->
     </header>
 
     <EditLabel ref="editLabelRef" />

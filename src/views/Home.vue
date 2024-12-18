@@ -4,15 +4,20 @@
             <div class="content">
                 <h1 id="logo">TO NORTH</h1>
                 <div id="des"></div>
-                <UploadBtn style="margin-top: 50px;" />
+
+                <UploadBtn msg="上传图片" style="margin-top: 50px;" @click="handleShowUpload" />
             </div>
         </div>
     </div>
+
+    <UploadImg ref="uploadImgRef" />
+
 </template>
 
 <script setup lang="ts">
 import Typed from 'typed.js';
 
+const uploadImgRef = ref(null)
 
 onMounted(() => {
     new Typed('#des', {
@@ -22,6 +27,10 @@ onMounted(() => {
 
     });
 })
+
+const handleShowUpload = () => {
+    uploadImgRef.value.open()
+}
 </script>
 
 <style scoped>
