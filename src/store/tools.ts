@@ -8,17 +8,17 @@ export const useToolsStore = defineStore("tools", () => {
     {
       name: "矩形",
       tag: "rect",
-      icon: "/src/assets/icon/rect.svg",
+      icon: "rect",
     },
     {
       name: "圆形",
       tag: "circle",
-      icon: "/src/assets/icon/circle.svg",
+      icon: "circle",
     },
     {
       name: "选择工具",
       tag: "edit",
-      icon: "/src/assets/icon/select.svg",
+      icon: "select",
     },
   ];
   /* 操作列表 */
@@ -36,7 +36,7 @@ export const useToolsStore = defineStore("tools", () => {
     {
       name: "清空标注",
       tag: "clear",
-      icon: "/src/assets/icon/clear.svg",
+      icon: "clear",
     },
   ];
   /* 视图操作 */
@@ -44,17 +44,17 @@ export const useToolsStore = defineStore("tools", () => {
     {
       name: "放大",
       tag: "in",
-      icon: "/src/assets/icon/in.svg",
+      icon: "in",
     },
     {
       name: "缩小",
       tag: "out",
-      icon: "/src/assets/icon/out.svg",
+      icon: "out",
     },
     {
       name: "适配屏幕",
       tag: "fit",
-      icon: "/src/assets/icon/fitScreen.svg",
+      icon: "fitScreen",
     },
   ];
 

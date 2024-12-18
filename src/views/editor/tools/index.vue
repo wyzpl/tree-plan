@@ -6,8 +6,7 @@
             <el-tooltip effect="dark" :content="item.name" placement="bottom">
                 <el-button circle :color="item.tag === toolsStore.shape ? '#626aef' : ''"
                     @click="toolsStore.setShape(item.tag)">
-
-                    <img :src="item.icon" width="14" height="14" alt="" />
+                    <SvgIcon :name="item.icon" />
                 </el-button>
             </el-tooltip>
         </template>
@@ -17,8 +16,8 @@
         <template v-for="item in toolsStore.drawOperation" :key="item.tag">
             <el-tooltip effect="dark" :content="item.name" placement="bottom">
                 <el-button circle @click="handleClickDrawOperation(item.tag)">
+                    <SvgIcon :name="item.icon" />
 
-                    <img :src="item.icon" width="14" height="14" alt="" />
                 </el-button>
             </el-tooltip>
         </template>
@@ -28,8 +27,7 @@
         <template v-for="item in toolsStore.viewOperation" :key="item.tag">
             <el-tooltip effect="dark" :content="item.name" placement="bottom">
                 <el-button circle @click="handleClickViewOperation(item.tag)">
-
-                    <img :src="item.icon" width="14" height="14" alt="" />
+                    <SvgIcon :name="item.icon" />
                 </el-button>
             </el-tooltip>
         </template>
