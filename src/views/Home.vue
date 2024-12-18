@@ -54,7 +54,7 @@ const handleShowUpload = () => {
 
 #logo {
     font-size: 60px;
-    background: linear-gradient(to right, #000, rgba(190, 20, 128));
+    background: linear-gradient(to right, yellow, rgba(190, 20, 128));
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
