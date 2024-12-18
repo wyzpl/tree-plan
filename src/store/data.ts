@@ -6,22 +6,22 @@ export const useDataStore = defineStore("data", () => {
   const data = ref([]);
 
   /* 当前选中的 */
-  const currentUrl = ref("");
+  const current = ref();
 
-  const setCurrentUrl = (url: string) => {
-    currentUrl.value = url;
+  const setCurrent = (item: any) => {
+    current.value = item;
   };
 
   /* 添加数据 */
   const setData = (list: any) => {
     data.value.push(...list);
-    currentUrl.value = list[0].url;
+    current.value = list[0];
   };
 
   return {
     data,
     setData,
-    currentUrl,
-    setCurrentUrl,
+    current,
+    setCurrent,
   };
 });

@@ -40,13 +40,13 @@
                 </div>
 
                 <!-- 可见性 -->
-                <el-button circle size="samll">
+                <el-button circle size="small">
                     <img src="@/assets/icon/visible.svg" width="16" height="16" alt="" srcset="">
                     <!-- <img src="@/assets/icon/invisible.svg" width="16" height="16" alt="" srcset=""> -->
                 </el-button>
 
                 <!-- 删除 -->
-                <el-button circle size="samll" :icon="Delete" @click="appStore.removeAnnotation(item.id)"></el-button>
+                <el-button circle size="small" :icon="Delete" @click="appStore.removeAnnotation(item.id)"></el-button>
             </div>
 
         </el-scrollbar>

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useAppStore } from "./app";
 
 export const useToolsStore = defineStore("tools", () => {
   /* 工具列表 */
@@ -14,14 +15,14 @@ export const useToolsStore = defineStore("tools", () => {
       tag: "circle",
       icon: "/src/assets/icon/circle.svg",
     },
-  ];
-  /* 操作列表 */
-  const drawOperation = [
     {
       name: "选择工具",
       tag: "edit",
       icon: "/src/assets/icon/select.svg",
     },
+  ];
+  /* 操作列表 */
+  const drawOperation = [
     // {
     //   name: "撤销",
     //   tag: "revoked",
@@ -63,6 +64,11 @@ export const useToolsStore = defineStore("tools", () => {
   /* 切换图形 */
   const setShape = (tag: string) => {
     shape.value = tag;
+    if (tag === "edit") {
+      useAppStore().allowEdit();
+    } else {
+      useAppStore().stopEdit();
+    }
   };
 
   return {

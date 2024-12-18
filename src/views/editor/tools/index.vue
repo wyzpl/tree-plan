@@ -46,7 +46,8 @@ const handleClickDrawOperation = (operation: string) => {
     if (operation === 'clear') {
         appStore.removeAnnotation(operation)
     } else {
-        appStore.allowEdit(operation)
+        /* 允许编辑 */
+        appStore.allowEdit()
         toolsStore.setShape(null)
     }
 }

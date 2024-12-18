@@ -1,19 +1,24 @@
 <template>
-    <el-tooltip content="暂未实现">
-        <div class="footer">
-            <el-icon>
-                <ArrowLeft />
-            </el-icon>
-            <span>图片名称</span>
-            <el-icon>
-                <ArrowRight />
-            </el-icon>
-        </div>
-    </el-tooltip>
+    <div class="footer">
+        <el-tooltip content="暂未实现">
+            <el-button text :icon="ArrowLeft" disabled></el-button>
+        </el-tooltip>
+        <span>{{ current.name }}</span>
+        <el-tooltip content="暂未实现">
+            <el-button text :icon="ArrowRight" disabled></el-button>
+        </el-tooltip>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
+
+const dataStore = useDataStore()
+
+const { current, data } = storeToRefs(dataStore)
+
+
+
 </script>
 
 <style lang="sass" scoped>
@@ -22,11 +27,11 @@ import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
     display: flex
     align-items: center
     justify-content: center
-    gap:25px
+    gap:45px
     padding: 10px 20px
     background-color: #fff
     border-top: 1px solid rgba(0, 0, 0, 0.1)
 
-.el-icon
-    cursor: pointer
+.el-button
+    width: 32px
 </style>

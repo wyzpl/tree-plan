@@ -22,10 +22,10 @@ const toolsStore = useToolsStore()
 const dataStore = useDataStore()
 
 /* 编辑器实例 */
-const app = ref(null)
+let app = null
 
 /* 当前图片地址 */
-const { currentUrl } = storeToRefs(dataStore)
+const { current } = storeToRefs(dataStore)
 
 /* 图片大小，填充 Frame */
 const w = ref(0)
@@ -49,9 +49,10 @@ const loadImage = (url: string): Promise<{ width: number, height: number }> => {
     });
 }
 watchEffect(async () => {
-    if (!currentUrl.value) return
+    console.log("🏸 ~ current.value:", current.value)
+    if (!current.value) return
 
-    let res = await loadImage(currentUrl.value)
+    let res = await loadImage(current.value.url)
 
     w.value = res.width
     h.value = res.height
@@ -60,12 +61,12 @@ watchEffect(async () => {
 })
 
 const initEditor = () => {
-    if (app.value) {
-        app.value.destroy()
+    if (app) {
+        app.destroy()
         appStore.resetAnnotationList()
     }
 
-    app.value = new App({
+    app = new App({
         view: 'container',
         editor: { type: 'draw' },
         wheel: { zoomSpeed: 0.2 },
@@ -78,27 +79,27 @@ const initEditor = () => {
         },
     })
 
-    appStore.setApp(app.value)
+    appStore.setApp(app)
     // 创建点阵实例
-    const dotMatrix = new DotMatrix(app.value)
+    const dotMatrix = new DotMatrix(app)
 
     let frame = new Frame({
         width: w.value,
         height: h.value,
         fill: {
             type: 'image',
-            url: dataStore.currentUrl,
+            url: dataStore.current.url,
         },
         overflow: 'hide',
     })
 
-    app.value.tree.add(frame)
-    app.value.tree.zoom('fit', 10)
+    app.tree.add(frame)
+    app.tree.zoom('fit', 10)
     // 启用点阵显示
     dotMatrix.enableDotMatrix(true)
 
 
-    app.value.on(PointerEvent.DOWN, (e) => {
+    app.on(PointerEvent.DOWN, (e) => {
         /* 鼠标点击图片外进制绘制 */
         const { x, y } = e.getPagePoint()
         if (x < 0 || y < 0 || x > w.value || y > h.value) return
@@ -109,11 +110,11 @@ const initEditor = () => {
     // 创建图形（拖拽）
     let shape: Rect | Ellipse | undefined
 
-    app.value.on(DragEvent.START, () => {
+    app.on(DragEvent.START, () => {
         if (!toolsStore.shape || !isDraw.value) return
 
-        app.value.editor.visible = false
-        app.value.tree.hitChildren = false
+        app.editor.visible = false
+        app.tree.hitChildren = false
 
         if (toolsStore.shape === 'rect') {
             shape = new Rect({ id: nanoid(), name: '选择标签', dragBounds: 'parent', editable: true, fill: 'rgb(50,205,121,.2)', stroke: 'rgb(50,205,121,.4)' })
@@ -121,13 +122,13 @@ const initEditor = () => {
             shape = new Ellipse({ id: nanoid(), name: '选择标签', dragBounds: 'parent', editable: true, fill: 'rgb(50,205,121,.2)', stroke: 'rgb(50,205,121,.4)' })
         } else {
             shape = undefined
-            app.value.editor.visible = true
-            app.value.tree.hitChildren = true
+            app.editor.visible = true
+            app.tree.hitChildren = true
         }
 
     })
 
-    app.value.on(DragEvent.DRAG, (e: DragEvent) => {
+    app.on(DragEvent.DRAG, (e: DragEvent) => {
         if (!isDraw.value || shape == undefined) return
 
         /* 设置大小 添加图形 */
@@ -135,7 +136,7 @@ const initEditor = () => {
         frame.add(shape)
     })
 
-    app.value.on(PointerEvent.UP, (e) => {
+    app.on(PointerEvent.UP, (e) => {
 
         if (!toolsStore.shape || !isDraw.value) return
 

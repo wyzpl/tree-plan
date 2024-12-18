@@ -17,8 +17,25 @@ export const useAppStore = defineStore("app", () => {
     annotationList.value.push(shape);
   };
 
+  /* 允许编辑 */
+  const allowEdit = () => {
+    app.value.editor.visible = true;
+    app.value.tree.hitChildren = true;
+  };
+
+  /* 停止编辑 */
+  const stopEdit = () => {
+    app.value.editor.visible = false;
+    app.value.tree.hitChildren = false;
+  };
+
   /* 鼠标移入显示对应标注 */
   const setHoverAnnotationId = (id: string) => {
+    if (id) {
+      allowEdit();
+    } else {
+      stopEdit();
+    }
     app.value.editor.target = app.value.tree.findId(id);
   };
 
@@ -61,13 +78,6 @@ export const useAppStore = defineStore("app", () => {
     }
   };
 
-  /* 允许编辑 */
-  const allowEdit = (type: string) => {
-    console.log("🏸 ~ type:", type);
-    app.value.editor.visible = true;
-    app.value.tree.hitChildren = true;
-  };
-
   return {
     app,
     setApp,
@@ -77,6 +87,7 @@ export const useAppStore = defineStore("app", () => {
     setHoverAnnotationId,
     fitScreen,
     allowEdit,
+    stopEdit,
     resetAnnotationList,
   };
 });

@@ -1,6 +1,6 @@
 <template>
     <header class="top-header">
-        <div id="logo"></div>
+        <div id="logo">TO NORTH</div>
         <el-dropdown placement="bottom-start" @command="handleCommand">
             <span class="dropdown-link">
                 操作
@@ -47,17 +47,6 @@
 
 <script setup lang="ts">
 import { Upload, DocumentAdd, Download } from '@element-plus/icons-vue'
-import Typed from 'typed.js';
-
-const logo = ref()
-
-onMounted(() => {
-    logo.value = new Typed('#logo', {
-        strings: ['TreePlan Annotation'],
-        typeSpeed: 50,
-        cursorChar: ''
-    });
-})
 
 const editLabelRef = ref(null)
 const uploadImgRef = ref(null)
